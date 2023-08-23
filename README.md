@@ -1,1 +1,1 @@
-# Frightful-Frenzy
+# Frightful Frenzy
