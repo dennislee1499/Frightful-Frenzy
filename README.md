@@ -14,4 +14,4 @@ In Frightful Frenzy, users will be able to:
 - Feel a sense of achievement as you strive to beat your previous high score
 
 ### Wireframes 
-https://wireframe.cc/fT7Or7
+<img src="Screenshot 2023-08-23 at 9.16.02 PM.png">
