@@ -13,10 +13,10 @@ In Frightful Frenzy, users will be able to:
 - Experience higher difficulty as the game progresses
 - Feel a sense of achievement as you strive to beat your previous high score
 
-### Wireframes 
+## Wireframes 
 <img src="Screenshot 2023-08-23 at 9.16.02 PM.png">
 
-#### Technologies, Libraries, APIs
+## Technologies, Libraries, APIs
 
 - p5js
 - pixijs
