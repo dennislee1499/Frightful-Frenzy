@@ -24,11 +24,10 @@ In Frightful Frenzy, users will be able to:
 - Canvas API
 
 ## Implementation Timeline 
-- Wednesday - Set up skeleton, read up on documentation in order to execute project, start on handling character movement/display on canvas
-- Thursday - Display monster image, implement logic for generating monsters at random positions as well as monster movements
-- Friday - Logic for collision detection between the user and monster, input handling for movement using arrow keys, game over message if collision occurs
-- Saturday - Work on better styling and refining movement for better gameplay
-- Sunday - Implementing logic for keeping track of players score, display score board on canvas
-- Monday - Work on increasing monsters speed as game progresses, test for bugs
-- Tuesday - Finishing touches for css, more testing 
-- Wednesday - Test for potential bugs, refining, upload to Github 
+- Thursday - Set up skeleton, read up on documentation in order to execute project, start on handling character movement/display on canvas
+- Friday - Display monster image, implement logic for generating monsters at random positions as well as monster movements
+- Saturday - Logic for collision detection between the user and monster, input handling for movement using arrow keys, game over message if collision occurs
+- Sunday - Work on better styling and refining movement for better gameplay
+- Monday - Implementing logic for keeping track of players score, display score board on canvas
+- Tuesday - Work on increasing monsters speed as game progresses, test for bugs
+- Wednesday - Finishing touches for css, test for potential bugs, refining, upload to Github 
