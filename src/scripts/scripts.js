@@ -1,0 +1,95 @@
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const images = {};
+images.player = new Image();
+images.player.src = "images/Hero.png";
+
+const playerWidth = 256;
+const playerHeight = 256;
+let playerFrameX = 0;
+let playerFrameY = 0;
+let playerX = 0;
+let playerY = 0;
+const playerSpeed = 6;
+
+function drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH) {
+    ctx.drawImage(img, sX, sY, sW, sH, dX, dY, dW, dH);
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawSprite(
+    images.player,
+    playerWidth * playerFrameX,
+    playerHeight * playerFrameY,
+    playerWidth,
+    playerHeight,
+    playerX,
+    playerY,
+    playerWidth,
+    playerHeight
+  );
+
+  playerFrameX = (playerFrameX + 1) % 4;
+
+  if (playerX < canvas.width + playerWidth) {
+    playerX += playerSpeed;
+  } else {
+    playerX = 0 - playerWidth;
+  }
+
+  requestAnimationFrame(animate);
+}
+
+images.player.onload = function () {
+  animate();
+};
+
+window.addEventListener("resize", function () {
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+});
+
+
+// const canvas = document.getElementById("canvas");
+// const ctx = canvas.getContext("2d");
+
+// const spriteImage = new Image();
+// spriteImage.src = "../../images/Hero.png";
+
+// const frameWidth = spriteImage.width / 4;
+// const frameHeight = spriteImage.height / 4;
+// let currentFrame = 0;
+// const totalFrames = 16;
+// const animationSpeed = 100;
+
+// function animate() {
+//   ctx.clearRect(0, 0, canvas.width, canvas.height);
+//   const row = Math.floor(currentFrame / 4);
+//   const col = currentFrame % 4;
+//   ctx.drawImage(
+//     spriteImage,
+//     col * frameWidth,
+//     row * frameHeight,
+//     frameWidth,
+//     frameHeight,
+//     0,
+//     0,
+//     frameWidth,
+//     frameHeight
+//   );
+
+//   currentFrame = (currentFrame + 1) % totalFrames;
+
+//   requestAnimationFrame(animate);
+// }
+
+// spriteImage.onload = () => {
+//   canvas.width = frameWidth;
+//   canvas.height = frameHeight;
+//   animate();
+// };
+
