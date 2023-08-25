@@ -22,19 +22,35 @@ let playerFrameX = 3;
 let playerFrameY = 3;
 let playerX = floorX;
 let playerY = 47;
-const playerSpeed = 7;
+let playerDirection = "right";
+const playerSpeed = 5;
 
 // drawing sprite on canvas
 function drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH) {
     ctx.drawImage(img, sX, sY, sW, sH, dX, dY, dW, dH);
 }
 
-
+// animating game 
 function animate() {
+
+  // clear canvas for next frame
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // different directions 
+
+  if (playerDirection === "up") {
+    playerFrameY = 1;
+  } else if (playerDirection === "down") {
+    playerFrameY = 0;
+  } else if (playerDirection === "left") {
+    playerFrameY = 2;
+  } else if (playerDirection === "right") {
+    playerFrameY = 3;
+  }
 
   let nextPlayerX = playerX + playerSpeed;
 
+  // restrict player to stay within floor texture
   if (nextPlayerX + playerWidth > floorX + floorWidth) {
     nextPlayerX = floorX - playerWidth;
   }
@@ -44,6 +60,7 @@ function animate() {
   playerX = nextPlayerX;
 
 
+  // draw sprite on canvas
 drawSprite(
     images.player,
     playerWidth * playerFrameX,
@@ -62,19 +79,19 @@ drawSprite(
   requestAnimationFrame(animate);
 }
 
-
+// triggers animation when player image is loaded
 images.player.onload = function () {
   animate();
 };
 
+// adjusts canvas size when window is resized
 window.addEventListener("resize", function () {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 
+  // recalculate floor position based off canvas size
   floorX = (canvas.width - floorWidth) / 2;
-  floorY = (canvas.height = floorHeight) / 2;
+  floorY = (canvas.height - floorHeight) / 2;
 });
 
-console.log("Floor X:", floorX);
-console.log("Player Start X:", playerX);
 
