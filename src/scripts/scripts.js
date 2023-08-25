@@ -30,8 +30,8 @@ const playerWidth = 95;
 const playerHeight = 95;
 let playerFrameX = 3;
 let playerFrameY = 3;
-let playerX = floorX;
-let playerY = 47;
+let playerX = floorX + (floorWidth/2) - (playerWidth/2);
+let playerY = floorY + (floorHeight/2) - (playerHeight/2);
 let playerDirection = "right";
 const playerSpeed = 5;
 
@@ -49,26 +49,17 @@ function animate() {
 
   // different directions 
 
- if (keys["ArrowUp"]) {
-  playerDirection = "up";
- } else if (keys["ArrowDown"]) {
-  playerDirection = "down";
- } else if (keys["ArrowLeft"]) {
-  playerDirection = "left";
- } else if (keys["ArrowRight"]) {
-  playerDirection = "right";
- }
 
-  let nextPlayerX = playerX + playerSpeed;
+  // let nextPlayerX = playerX + playerSpeed;
 
   // restrict player to stay within floor texture
-  if (nextPlayerX + playerWidth > floorX + floorWidth) {
-    nextPlayerX = floorX - playerWidth;
-  }
-  if (nextPlayerX < floorX) {
-    nextPlayerX = floorX + floorWidth - playerWidth;
-  }
-  playerX = nextPlayerX;
+  // if (nextPlayerX + playerWidth > floorX + floorWidth) {
+  //   nextPlayerX = floorX - playerWidth;
+  // }
+  // if (nextPlayerX < floorX) {
+  //   nextPlayerX = floorX + floorWidth - playerWidth;
+  // }
+  // playerX = nextPlayerX;
 
 
   // draw sprite on canvas
@@ -91,34 +82,37 @@ drawSprite(
 }
 
 function update() {
-  if (playerDirection === "up") {
+  if (keys["ArrowUp"]) {
     playerY -= playerSpeed;
-  } else if (playerDirection === "down") {
+  } else if (keys["ArrowDown"]) {
     playerY += playerSpeed;
-  } else if (playerDirection === "left") {
+  } else if (keys["ArrowLeft"]) {
     playerX -= playerSpeed;
-  } else if (playerDirection === "right") {
+  } else if (keys["ArrowRight"]) {
     playerX += playerSpeed;
   }
 
-  if (playerX + playerWidth > floorX + floorWidth) {
-    playerX = floorX + floorWidth - playerWidth;
-  }
-  // For left boundary
-  if (playerX < floorX) {
-    playerX = floorX;
-  }
-  // For bottom boundary
-  if (playerY + playerHeight > floorY + floorHeight) {
-    playerY = floorY + floorHeight - playerHeight;
-  }
-  // For top boundary
-  if (playerY < floorY) {
-    playerY = floorY;
-  }
-
+  boundaryChecks();
 }
 
+function boundaryChecks() {
+      if (playerX + playerWidth > floorX + floorWidth) {
+        playerX = floorX + floorWidth - playerWidth;
+      }
+      // Left boundary
+      if (playerX < floorX) {
+        playerX = floorX;
+      }
+      // Bottom boundary
+      if (playerY + playerHeight > floorY + floorHeight) {
+        playerY = floorY + floorHeight - playerHeight;
+      }
+      // Top boundary
+      if (playerY < floorY) {
+        playerY = floorY;
+      }
+
+}
 
 // triggers animation when player image is loaded
 images.player.onload = function () {
