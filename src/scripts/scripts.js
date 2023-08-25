@@ -1,6 +1,16 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
+let keys = {};
+
+document.addEventListener("keydown", function (event) {
+  keys[event.code] = true;
+});
+
+document.addEventListener("keyup", function (event) {
+  keys[event.code] = false;
+});
+
 // set up dimension of canvas to match window
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
@@ -35,18 +45,19 @@ function animate() {
 
   // clear canvas for next frame
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  update();
 
   // different directions 
 
-  if (playerDirection === "up") {
-    playerFrameY = 1;
-  } else if (playerDirection === "down") {
-    playerFrameY = 0;
-  } else if (playerDirection === "left") {
-    playerFrameY = 2;
-  } else if (playerDirection === "right") {
-    playerFrameY = 3;
-  }
+ if (keys["ArrowUp"]) {
+  playerDirection = "up";
+ } else if (keys["ArrowDown"]) {
+  playerDirection = "down";
+ } else if (keys["ArrowLeft"]) {
+  playerDirection = "left";
+ } else if (keys["ArrowRight"]) {
+  playerDirection = "right";
+ }
 
   let nextPlayerX = playerX + playerSpeed;
 
@@ -78,6 +89,36 @@ drawSprite(
 
   requestAnimationFrame(animate);
 }
+
+function update() {
+  if (playerDirection === "up") {
+    playerY -= playerSpeed;
+  } else if (playerDirection === "down") {
+    playerY += playerSpeed;
+  } else if (playerDirection === "left") {
+    playerX -= playerSpeed;
+  } else if (playerDirection === "right") {
+    playerX += playerSpeed;
+  }
+
+  if (playerX + playerWidth > floorX + floorWidth) {
+    playerX = floorX + floorWidth - playerWidth;
+  }
+  // For left boundary
+  if (playerX < floorX) {
+    playerX = floorX;
+  }
+  // For bottom boundary
+  if (playerY + playerHeight > floorY + floorHeight) {
+    playerY = floorY + floorHeight - playerHeight;
+  }
+  // For top boundary
+  if (playerY < floorY) {
+    playerY = floorY;
+  }
+
+}
+
 
 // triggers animation when player image is loaded
 images.player.onload = function () {
