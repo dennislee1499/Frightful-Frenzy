@@ -7,13 +7,13 @@ const images = {};
 images.player = new Image();
 images.player.src = "images/Hero.png";
 
-const playerWidth = 256;
-const playerHeight = 256;
+const playerWidth = 95;
+const playerHeight = 95;
 let playerFrameX = 0;
 let playerFrameY = 0;
 let playerX = 0;
 let playerY = 0;
-const playerSpeed = 6;
+const playerSpeed = 7;
 
 function drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH) {
     ctx.drawImage(img, sX, sY, sW, sH, dX, dY, dW, dH);
