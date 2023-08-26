@@ -47,19 +47,6 @@ function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   update();
 
-  // different directions 
-
-
-  // let nextPlayerX = playerX + playerSpeed;
-
-  // restrict player to stay within floor texture
-  // if (nextPlayerX + playerWidth > floorX + floorWidth) {
-  //   nextPlayerX = floorX - playerWidth;
-  // }
-  // if (nextPlayerX < floorX) {
-  //   nextPlayerX = floorX + floorWidth - playerWidth;
-  // }
-  // playerX = nextPlayerX;
 
 
   // draw sprite on canvas
@@ -84,12 +71,16 @@ drawSprite(
 function update() {
   if (keys["ArrowUp"]) {
     playerY -= playerSpeed;
+    playerDirection = "up";
   } else if (keys["ArrowDown"]) {
     playerY += playerSpeed;
+    playerDirection = "down";
   } else if (keys["ArrowLeft"]) {
     playerX -= playerSpeed;
+    playerDirection = "left";
   } else if (keys["ArrowRight"]) {
     playerX += playerSpeed;
+    playerDirection = "right";
   }
 
   boundaryChecks();
@@ -110,6 +101,22 @@ function boundaryChecks() {
       // Top boundary
       if (playerY < floorY) {
         playerY = floorY;
+      }
+
+
+      switch (playerDirection) {
+        case "up":
+          playerFrameY = 1;
+          break;
+        case "down":
+          playerFrameY = 0;
+          break;
+        case "left":
+          playerFrameY = 2;
+          break;
+        case "right":
+          playerFrameY = 3;
+          break;
       }
 
 }
