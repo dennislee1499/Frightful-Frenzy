@@ -1,9 +1,9 @@
 export default class Monster {
-  constructor(x, y, spriteSrc) {
+  constructor(x, y, spriteSrc, width = 65, height = 80, framesX = 3, framesY = 4, type = "default") {
     this.x = x;
     this.y = y;
-    this.width = 65; // One sprite's width
-    this.height = 80; // One sprite's height
+    this.width = width;
+    this.height = height;
     this.sprite = new Image();
     this.isLoaded = false;
     this.sprite.onload = () => {
@@ -18,16 +18,28 @@ export default class Monster {
     this.setFrameYBasedOnDirection();
     this.animationCounter = 0;
     this.animationDelay = 3;
+    this.framesX = framesX;
+    this.framesY = framesY;
+    this.type = type;
   }
 
   setFrameYBasedOnDirection() {
     // Use an object map for directions
-    const directions = {
+    let directions = {
       up: 3,
       down: 0,
       left: 1,
       right: 2,
     };
+
+    if (this.type === "imp") {
+      directions = {
+        up: 1,
+        down: 0,
+        left: 3,
+        right: 2,
+      };
+    }
     this.frameY = directions[this.direction];
   }
 
@@ -35,8 +47,8 @@ export default class Monster {
     if (this.isLoaded) {
       ctx.drawImage(
         this.sprite,
-        this.width * this.frameX,
-        this.height * this.frameY,
+        this.width * (this.frameX % this.framesX),
+        this.height * (this.frameY % this.framesY),
         this.width,
         this.height,
         this.x,
@@ -51,7 +63,7 @@ export default class Monster {
   updateAnimationFrame() {
     this.animationCounter++;
     if (this.animationCounter > this.animationDelay) {
-      this.frameX = (this.frameX + 1) % 3;
+      this.frameX = (this.frameX + 1) % this.framesX;
       this.animationCounter = 0;
     }
   }

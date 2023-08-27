@@ -1,4 +1,24 @@
-import Monster from "./monster.js";
+
+import Monster from "./zombie.js";
+
+const monsterTypes = [
+  {
+    spriteSrc: "images/rotting_zombie2.png",
+    width: 65,
+    height: 80,
+    framesX: 3,
+    framesY: 4,
+    type: "zombie"
+  },
+  {
+    spriteSrc: "images/imp.png",
+    width: 80,
+    height: 80,
+    framesX: 4,
+    framesY: 4,
+    type: "imp"
+  },
+];
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -15,8 +35,8 @@ export default class MonsterManager {
     this.sides = shuffleArray([0, 1, 2, 3]);
   }
 
-  spawnMonster(x, y, spriteSrc) {
-    const monster = new Monster(x, y, spriteSrc);
+  spawnMonster(x, y, spriteSrc, width, height) {
+    const monster = new Monster(x, y, spriteSrc, width, height);
     this.monsters.push(monster);
   }
 
@@ -32,11 +52,11 @@ export default class MonsterManager {
       return;
     }
 
-    const side = this.getNextSide();
-    let x, y;
-
-    const monsterWidth = 65;
-    const monsterHeight = 80;
+    const randomMonsterType = monsterTypes[Math.floor(Math.random() * monsterTypes.length)];
+     const side = this.getNextSide();
+     let x, y;
+     const monsterWidth = randomMonsterType.width;
+     const monsterHeight = randomMonsterType.height;
 
     switch (side) {
       case 0: // Top side
@@ -57,7 +77,20 @@ export default class MonsterManager {
         break;
     }
 
-    const monster = new Monster(x, y, "images/rotting_zombie2.png");
+    const monster = new Monster(
+      x,
+      y,
+      randomMonsterType.spriteSrc,
+      randomMonsterType.width,
+      randomMonsterType.height,
+      randomMonsterType.framesX,
+      randomMonsterType.framesY,
+      randomMonsterType.type
+    );
+
+        // const monsterManager = new MonsterManager();
+        // monsterManager.spawnRandomMonster(floorX, floorWidth, floorY, floorHeight, monsterManager.monsterTypes);
+
 
     switch (side) {
       case 0:

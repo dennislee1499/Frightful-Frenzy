@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const floorWidth = 1300;
   const floorHeight = 665.55;
-  const floorX = (canvas.width - 1300) / 2;
-  const floorY = (canvas.height - 665.55) / 2;
+  let floorX = (canvas.width - 1300) / 2;
+  let floorY = (canvas.height - 665.55) / 2;
 
   // create object to load and store image resource
   const images = {};
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let playerX = floorX + floorWidth / 2 - playerWidth / 2;
   let playerY = floorY + floorHeight / 2 - playerHeight / 2;
   let playerDirection = "right";
-  const playerSpeed = 5;
+  const playerSpeed = 10;
 
   // drawing sprite on canvas
   function drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH) {
@@ -126,6 +126,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // triggers animation when player image is loaded
   images.player.onload = function () {
     animate();
+    setInterval(() => {
+      monsterManager.spawnRandomMonster(
+        floorX,
+        floorWidth,
+        floorY,
+        floorHeight
+      );
+    }, 1000);
   };
 
   // adjusts canvas size when window is resized
@@ -137,8 +145,4 @@ document.addEventListener("DOMContentLoaded", function () {
     floorX = (canvas.width - floorWidth) / 2;
     floorY = (canvas.height - floorHeight) / 2;
   });
-
-  setInterval(() => {
-    monsterManager.spawnRandomMonster(floorX, floorWidth, floorY, floorHeight);
-  }, 1000);
 });
