@@ -29,7 +29,7 @@ const monsterTypes = [
     framesY: 4,
     type: "sheepman",
     speed: 2,
-    spawnRate: 0.3
+    spawnRate: 0.35
   }
 ];
 
@@ -48,6 +48,11 @@ export default class MonsterManager {
     this.sides = shuffleArray([0, 1, 2, 3]);
   }
 
+  reset() {
+    this.monsters = [];
+    this.sides = shuffleArray([0, 1, 2, 3]);
+  }
+
   spawnMonster(x, y, spriteSrc, width, height) {
     const monster = new Monster(x, y, spriteSrc, width, height);
     this.monsters.push(monster);
@@ -57,7 +62,7 @@ export default class MonsterManager {
     if (this.sides.length === 0) {
       this.sides = shuffleArray([0, 1, 2, 3]);
     }
-    return this.sides.pop();
+    return this.sides.pop() || 0;
   }
 
   spawnRandomMonster(floorX, floorWidth, floorY, floorHeight) {

@@ -49,7 +49,7 @@ export default class Monster {
         right: 1,
       };
     }
-    this.frameY = directions[this.direction];
+    this.frameY = directions[this.direction] || 0;
   }
 
   draw(ctx) {

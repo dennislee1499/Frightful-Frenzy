@@ -1,22 +1,29 @@
 import MonsterManager from "./monsterManager.js";
-import { checkCollision } from "./collision.js"
-// import Monster from "./zombie.js";
-
-let canvas;
-let ctx;
-let monsterSpawnInterval;
-let keys = {};
-let isGameOver = false;
-const monsterManager = new MonsterManager();
-
+import { checkCollision } from "./collision.js";
+import Monster from "./zombie.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  canvas = document.getElementById("canvas");
-  ctx = canvas.getContext("2d");
-  const monsterManager = new MonsterManager();
-
+  let canvas = document.getElementById("canvas");
+  let ctx = canvas.getContext("2d");
   let monsterSpawnInterval;
   let keys = {};
+  let isGameOver = false;
+  let isGameRunning = false;
+  const monsterManager = new MonsterManager();
+
+  const floorWidth = 1300;
+  const floorHeight = 665.55;
+  let floorX;
+  let floorY;
+
+  const playerWidth = 95;
+  const playerHeight = 95;
+  let playerX;
+  let playerY;
+  let playerFrameX = 3;
+  let playerFrameY = 3;
+  const playerSpeed = 7;
+  let playerDirection = "right";
 
   document.addEventListener("keydown", function (event) {
     keys[event.code] = true;
@@ -29,60 +36,45 @@ document.addEventListener("DOMContentLoaded", function () {
     keys[event.code] = false;
   });
 
-  // set up dimension of canvas to match window
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 
-  const floorWidth = 1300;
-  const floorHeight = 665.55;
-  let floorX = (canvas.width - 1300) / 2;
-  let floorY = (canvas.height - 665.55) / 2;
+  floorX = (canvas.width - 1300) / 2;
+  floorY = (canvas.height - 665.55) / 2;
 
-  // create object to load and store image resource
   const images = {};
   images.player = new Image();
   images.player.src = "images/Hero.png";
 
-  // player variables
-  const playerWidth = 95;
-  const playerHeight = 95;
-  let playerFrameX = 3;
-  let playerFrameY = 3;
-  let playerX = floorX + floorWidth / 2 - playerWidth / 2;
-  let playerY = floorY + floorHeight / 2 - playerHeight / 2;
-  let playerDirection = "right";
-  const playerSpeed = 8;
+  playerX = floorX + floorWidth / 2 - playerWidth / 2;
+  playerY = floorY + floorHeight / 2 - playerHeight / 2;
 
-  // drawing sprite on canvas
   function drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH) {
     ctx.drawImage(img, sX, sY, sW, sH, dX, dY, dW, dH);
   }
 
-  // animating game
   function animate() {
+    if (!isGameRunning) return;
+
     if (!isGameOver) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       update();
 
-    // draw sprite on canvas
-    drawSprite(
-      images.player,
-      playerWidth * playerFrameX,
-      playerHeight * playerFrameY,
-      playerWidth,
-      playerHeight,
-      playerX,
-      playerY,
-      playerWidth,
-      playerHeight
-    );
+      drawSprite(
+        images.player,
+        playerWidth * playerFrameX,
+        playerHeight * playerFrameY,
+        playerWidth,
+        playerHeight,
+        playerX,
+        playerY,
+        playerWidth,
+        playerHeight
+      );
 
-    monsterManager.updateAll(floorX, floorWidth, floorY, floorHeight);
-    monsterManager.drawAll(ctx);
-
-    // creating animation effect
-    playerFrameX = (playerFrameX + 1) % 4;
-
+      monsterManager.updateAll(floorX, floorWidth, floorY, floorHeight);
+      monsterManager.drawAll(ctx);
+      playerFrameX = (playerFrameX + 1) % 4;
     } else {
       gameOver();
     }
@@ -91,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function update() {
-    if (keys["ArrowUp"]) {
+     if (keys["ArrowUp"]) {
       playerY -= playerSpeed;
       playerDirection = "up";
     } else if (keys["ArrowDown"]) {
@@ -103,11 +95,9 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (keys["ArrowRight"]) {
       playerX += playerSpeed;
       playerDirection = "right";
-    }
-
-    boundaryChecks();
-
-    for (const monster of monsterManager.monsters) {
+  }
+  boundaryChecks();
+  for (const monster of monsterManager.monsters) {
       if (checkCollision ({
         x: playerX,
         y: playerY,
@@ -153,10 +143,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // triggers animation when player image is loaded
-  images.player.onload = function () {
-    animate();
-    setInterval(() => {
+  function gameOver() {
+    if (monsterSpawnInterval) {
+      clearInterval(monsterSpawnInterval);
+    }
+    isGameOver = true;
+    isGameRunning = false;
+    const text = "Game Over!";
+    const textSize = 50;
+    ctx.font = `${50}px Arial`;
+    ctx.fillStyle = "red";
+    const textWidth = ctx.measureText(text).width;
+    const textX = floorX + (floorWidth - textWidth) / 2;
+    const textY = floorY + floorHeight / 2 + textSize / 2;
+    ctx.fillText(text, textX, textY);
+  }
+
+  function initializeGame() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    isGameOver = false;
+    playerFrameX = 3;
+    playerFrameY = 3;
+    playerX = floorX + floorWidth / 2 - playerWidth / 2;
+    playerY = floorY + floorHeight / 2 - playerHeight / 2;
+    playerDirection = "right";
+    monsterManager.reset();
+    if (monsterSpawnInterval) {
+      clearInterval(monsterSpawnInterval);
+    }
+    monsterSpawnInterval = setInterval(() => {
       monsterManager.spawnRandomMonster(
         floorX,
         floorWidth,
@@ -164,58 +179,29 @@ document.addEventListener("DOMContentLoaded", function () {
         floorHeight
       );
     }, 1000);
+
+    if (!isGameRunning) {
+      isGameRunning = true;
+      requestAnimationFrame(animate);
+    }
+  }
+
+  images.player.onload = function () {
+    initializeGame();
   };
 
-  // adjusts canvas size when window is resized
   window.addEventListener("resize", function () {
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
-
-    // recalculate floor position based off canvas size
     floorX = (canvas.width - floorWidth) / 2;
     floorY = (canvas.height - floorHeight) / 2;
   });
 });
 
-// let isGameOver = false;
 
-function gameOver() {
-  clearInterval(monsterSpawnInterval);
-  isGameOver = true;
-  const text = "Game Over!";
-  const textSize = 50;
-  ctx.font = `${50}px Arial`;
-  ctx.fillStyle = 'red';
 
-  const textWidth = ctx.measureText(text).width;
 
-  const textX = floorX + (floorWidth - textWidth) / 2;
-  const textY = floorY + floorHeight / 2 + textSize / 2;
 
-  ctx.fillText(text, textX, textY);
-}
-
-function initializeGame() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  isGameOver = false;
-  playerFrameX = 3;
-  playerFrameY = 3;
-  playerX = floorX + floorWidth / 2 - playerWidth / 2;
-  playerY = floorY + floorHeight / 2 - playerHeight / 2;
-  playerDirection = "right";
-
-  monsterManager.reset();
-
-  if (monsterSpawnInterval) {
-    clearInterval(monsterSpawnInterval);
-  }
-
-  // animate();
-  monsterSpawnInterval = setInterval(() => {
-    monsterManager.spawnRandomMonster(floorX, floorWidth, floorY, floorHeight);
-  }, 1000);
-}
 
 
 
