@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const playerWidth = 95;
   const playerHeight = 95;
+  const buffer = 40; 
   let playerX;
   let playerY;
   let playerFrameX = 3;
@@ -99,10 +100,10 @@ document.addEventListener("DOMContentLoaded", function () {
   boundaryChecks();
   for (const monster of monsterManager.monsters) {
       if (checkCollision ({
-        x: playerX,
-        y: playerY,
-        width: playerWidth,
-        height: playerHeight
+        x: playerX + buffer,
+        y: playerY + buffer,
+        width: playerWidth - (buffer * 2),
+        height: playerHeight - (buffer * 2),
       }, monster)) {
         gameOver();
         return;
