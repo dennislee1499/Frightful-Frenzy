@@ -20,7 +20,7 @@ const monsterTypes = [
   },
   {
     spriteSrc: "images/sheepman.png",
-    width: 266,
+    width: 150,
     height: 200,
     framesX: 3,
     framesY: 4,
