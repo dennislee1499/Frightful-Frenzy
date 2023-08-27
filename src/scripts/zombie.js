@@ -40,6 +40,14 @@ export default class Monster {
         right: 2,
       };
     }
+    if (this.type === "sheepman") {
+      directions = {
+        up: 0,
+        down: 2,
+        left: 3,
+        right: 1,
+      };
+    }
     this.frameY = directions[this.direction];
   }
 

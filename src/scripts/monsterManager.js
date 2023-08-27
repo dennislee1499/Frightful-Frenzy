@@ -18,6 +18,14 @@ const monsterTypes = [
     framesY: 4,
     type: "imp"
   },
+  {
+    spriteSrc: "images/sheepman.png",
+    width: 266,
+    height: 200,
+    framesX: 3,
+    framesY: 4,
+    type: "sheepman"
+  }
 ];
 
 function shuffleArray(array) {
