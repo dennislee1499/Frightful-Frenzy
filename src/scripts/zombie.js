@@ -1,5 +1,5 @@
 export default class Monster {
-  constructor(x, y, spriteSrc, width = 65, height = 80, framesX = 3, framesY = 4, type = "default") {
+  constructor(x, y, spriteSrc, width = 65, height = 80, framesX = 3, framesY = 4, type = "default", speed = 5) {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -21,6 +21,7 @@ export default class Monster {
     this.framesX = framesX;
     this.framesY = framesY;
     this.type = type;
+    this.speed = speed;
   }
 
   setFrameYBasedOnDirection() {

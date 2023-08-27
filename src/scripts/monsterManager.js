@@ -1,4 +1,5 @@
 
+
 import Monster from "./zombie.js";
 
 const monsterTypes = [
@@ -8,7 +9,8 @@ const monsterTypes = [
     height: 80,
     framesX: 3,
     framesY: 4,
-    type: "zombie"
+    type: "zombie",
+    speed: 4
   },
   {
     spriteSrc: "images/imp.png",
@@ -16,15 +18,18 @@ const monsterTypes = [
     height: 80,
     framesX: 4,
     framesY: 4,
-    type: "imp"
+    type: "imp",
+    speed: 6
   },
   {
     spriteSrc: "images/sheepman.png",
     width: 150,
-    height: 200,
+    height: 205,
     framesX: 3,
     framesY: 4,
-    type: "sheepman"
+    type: "sheepman",
+    speed: 2,
+    spawnRate: 0.4
   }
 ];
 
@@ -61,6 +66,11 @@ export default class MonsterManager {
     }
 
     const randomMonsterType = monsterTypes[Math.floor(Math.random() * monsterTypes.length)];
+
+    if (Math.random() > randomMonsterType.spawnRate) {
+      return;
+    }
+
      const side = this.getNextSide();
      let x, y;
      const monsterWidth = randomMonsterType.width;
@@ -93,7 +103,8 @@ export default class MonsterManager {
       randomMonsterType.height,
       randomMonsterType.framesX,
       randomMonsterType.framesY,
-      randomMonsterType.type
+      randomMonsterType.type,
+      randomMonsterType.speed
     );
 
         // const monsterManager = new MonsterManager();
