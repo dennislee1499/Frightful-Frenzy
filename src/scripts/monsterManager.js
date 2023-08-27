@@ -29,7 +29,7 @@ const monsterTypes = [
     framesY: 4,
     type: "sheepman",
     speed: 2,
-    spawnRate: 0.4
+    spawnRate: 0.3
   }
 ];
 
