@@ -3,6 +3,9 @@ import { checkCollision } from "./collision.js";
 
 
 document.addEventListener("DOMContentLoaded", function () {
+  let floor = document.querySelector(".floor"); //////////
+  floor.style.display = "none"; //////////
+
   let canvas = document.getElementById("canvas");
   let ctx = canvas.getContext("2d");
   let monsterSpawnInterval;
@@ -30,6 +33,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const playerSpeed = 7;
   let playerDirection = "right";
 
+    // document
+    //   .getElementById("startGameButton")
+    //   .addEventListener("click", function () {
+    //     document.getElementById("instructionsOverlay").style.display = "none";
+    //     floor.style.display = "block"; 
+    //     initializeGame();
+    //   });
+
+
 
   document.addEventListener("keydown", function (event) {
     keys[event.code] = true;
@@ -52,6 +64,9 @@ document.addEventListener("DOMContentLoaded", function () {
   images.player = new Image();
   images.player.src = "images/Hero.png";
 
+  images.background = new Image();
+  images.background.src = "images/background.jpg"
+
   playerX = floorX + floorWidth / 2 - playerWidth / 2;
   playerY = floorY + floorHeight / 2 - playerHeight / 2;
 
@@ -68,6 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!isGameOver) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.drawImage(images.background, floorX, floorY, floorWidth, floorHeight); ////////
       update();
 
       drawSprite(

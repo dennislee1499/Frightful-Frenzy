@@ -19,33 +19,6 @@ canvas {
     width: 100%;
     height: 100%;
     z-index: 2;
+    // background-image: url("../../images/background.webp");
 }
 
-// #gameOverOverlay {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     background-color: rgba(0, 0, 0, 0.7);
-//     /* semi-transparent background */
-//     z-index: 9999;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     text-align: center;
-// }
-
-// #gameOverText {
-//     color: red;
-//     font-size: 50px;
-//     font-family: Arial;
-//     margin-bottom: 20px;
-// }
-
-// #scoreOverlayFinal {
-//     color: white;
-//     font-size: 30px;
-//     font-family: Arial;
-// }

@@ -112,10 +112,6 @@ export default class MonsterManager {
       randomMonsterType.speed
     );
 
-        // const monsterManager = new MonsterManager();
-        // monsterManager.spawnRandomMonster(floorX, floorWidth, floorY, floorHeight, monsterManager.monsterTypes);
-
-
     switch (side) {
       case 0:
         monster.direction = "down"; // should run downwards
