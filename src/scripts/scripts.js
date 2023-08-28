@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   document.addEventListener("keydown", function (event) {
+    event.preventDefault();
     keys[event.code] = true;
     if (event.code === "KeyR" && isGameOver) {
       initializeGame();
@@ -187,16 +188,38 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     isGameOver = true;
     isGameRunning = false;
-    const text = "Game Over!";
-    const textSize = 50;
+    const textGameOver = "Game Over!";
+    const textGameOverSize = 50;
     ctx.font = `${50}px Arial`;
-    ctx.fillStyle = "red";
-    const textWidth = ctx.measureText(text).width;
-    const textX = floorX + (floorWidth - textWidth) / 2;
-    const textY = floorY + floorHeight / 2 + textSize / 2;
-    ctx.fillText(text, textX, textY);
-    // const gameOverOverlay = document.getElementById("gameOverOverlay");
-    // gameOverOverlay.style.display = "flex";
+    ctx.fillStyle = "white";
+    const textGameOverWidth = ctx.measureText(textGameOver).width;
+    const textGameOverX = floorX + (floorWidth - textGameOverWidth) / 2;
+    const textGameOverY = floorY + floorHeight / 2 + textGameOverSize / 2;
+    ctx.fillText(textGameOver, textGameOverX, textGameOverY);
+
+
+    const textScore = `Final Score: ${score}`;
+    const textScoreSize = 30;
+    ctx.font = `${textScoreSize}px Arial`;
+    const textScoreWidth = ctx.measureText(textScore).width;
+    const textScoreX = floorX + (floorWidth - textScoreWidth) / 2;
+    const textScoreY = textGameOverY + textScoreSize + 30; 
+    ctx.fillText(textScore, textScoreX, textScoreY);
+
+
+    const textRestart = "Press 'R' to restart";
+    const textRestartSize = 30;
+    ctx.font = `${textRestartSize}px Arial`;
+    const textRestartWidth = ctx.measureText(textRestart).width;
+    const textRestartX = floorX + (floorWidth - textRestartWidth) / 2;
+    const textRestartY = textScoreY + textRestartSize + 30; 
+    ctx.fillText(textRestart, textRestartX, textRestartY);
+
+
+
+
+    const gameOverOverlay = document.getElementById("gameOverOverlay");
+    gameOverOverlay.style.display = "flex"; /////////
     document.getElementById("scoreOverlay").innerText = `Final Score: ${score}`;
 
   } 
@@ -230,9 +253,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  images.player.onload = function () {
-    initializeGame();
-  };
+  // images.player.onload = function () {
+  //   initializeGame();
+  // };
 
   window.addEventListener("resize", function () {
     canvas.height = window.innerHeight;
