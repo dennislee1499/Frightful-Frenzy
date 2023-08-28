@@ -18,10 +18,10 @@ In Frightful Frenzy, users will be able to:
 
 ## Technologies, Libraries, APIs
 
-- p5js
-- pixijs
 - Vanilla Javascript
-- Canvas API
+- Canvas
+- SCSS
+- HTML
 
 ## Implementation Timeline 
 - Thursday - Set up skeleton, read up on documentation in order to execute project, start on handling character movement/display on canvas
