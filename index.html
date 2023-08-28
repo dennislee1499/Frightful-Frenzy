@@ -22,12 +22,29 @@
       </div>
     </div>
 
+    <div id="gameTitle" 
+      style="position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 9999; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); background-color: rgba(0, 0, 0, 0.5); padding: 5px 15px; border-radius: 5px; display: none;">
+      FRIGHTFUL FRENZY
+    </div>
+
     <div class="floor"></div>
-    <div id="scoreOverlay" style="position: absolute; top: 62px; left: 85px; z-index: 9999; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); background-color: rgba(0, 0, 0, 0.5); padding: 5px; border-radius: 5px; ">Score: 0</div>
+    <div id="scoreOverlay" 
+      style="position: absolute; top: 62px; left: 85px; z-index: 9999; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); background-color: rgba(0, 0, 0, 0.5); padding: 5px; border-radius: 5px; display: none; ">
+      Score: 0
+    </div>
    
     <canvas id="canvas"></canvas>
     <script src="./dist/main.js"></script>
     <script type="module" src="src/scripts/scripts.js"></script>
+
+        <script>
+          document.getElementById("startGameButton").addEventListener("click", function () {
+            document.getElementById("gameTitle").style.display = "block";
+            document.getElementById("scoreOverlay").style.display = "block";
+          });
+        </script>
+
+
   </body>
 
 </html>
