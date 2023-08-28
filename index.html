@@ -7,6 +7,46 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./dist/main.css" />
     <title>Frightful Frenzy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+     
+     
+     <style>
+        #gameTitle {
+          font-family: 'Creepster', cursive;
+          font-size: 2em;
+          /* Adjust as needed */
+          color: red;
+          text-shadow:
+            2px 2px 0 #000,
+            4px 4px 0 #000,
+            6px 6px 0 #000,
+            8px 8px 0 #000,
+            10px 10px 0 #000,
+            12px 12px 10px rgba(0, 0, 0, 0.9),
+            14px 14px 14px rgba(0, 0, 0, 0.9);
+        }
+
+         #githubLink img {
+            filter: invert(1);
+            box-shadow: 0 0 15px #fff, 0 0 20px #fff, 0 0 25px #fff, 0 0 30px #fff;
+            transition: box-shadow 0.3s ease;
+        }
+
+        #githubLink img:hover {
+          filter: invert(0.8);
+            box-shadow: 0 0 20px #fff, 0 0 25px #fff, 0 0 30px #fff, 0 0 35px #fff;
+          
+        }
+
+         #githubLink {
+            display: none;  
+            position: absolute; 
+            top: 65px; 
+            right: 80px;
+            z-index: 10000;
+        }
+
+      </style>
   </head>
 
 
@@ -23,17 +63,24 @@
     </div>
 
     <div id="gameTitle" 
-      style="position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 9999; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); background-color: rgba(0, 0, 0, 0.5); padding: 5px 15px; border-radius: 5px; display: none;">
+      style="position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 9999; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); background-color: rgba(0, 0, 0, 0.5); padding: 5px 15px; border-radius: 5px; display: none;">
       FRIGHTFUL FRENZY
     </div>
 
     <div class="floor"></div>
+
     <div id="scoreOverlay" 
       style="position: absolute; top: 62px; left: 85px; z-index: 9999; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); background-color: rgba(0, 0, 0, 0.5); padding: 5px; border-radius: 5px; display: none; font-size: 24px; font-weight: bold; ">
       Score: 0
     </div>
    
     <canvas id="canvas"></canvas>
+
+  <a href="https://github.com/dennislee1499/Frightful-Frenzy" target="_blank" id="githubLink">
+    <img src="images/github-mark.png" alt="View on GitHub" width="40" height="40">
+  </a>
+
+
     <script src="./dist/main.js"></script>
     <script type="module" src="src/scripts/scripts.js"></script>
 
@@ -41,6 +88,7 @@
           document.getElementById("startGameButton").addEventListener("click", function () {
             document.getElementById("gameTitle").style.display = "block";
             document.getElementById("scoreOverlay").style.display = "block";
+            document.getElementById("githubLink").style.display = "block"; 
           });
         </script>
 
