@@ -67,6 +67,9 @@ document.addEventListener("DOMContentLoaded", function () {
   images.background = new Image();
   images.background.src = "images/background.jpg"
 
+  images.canvasBackground = new Image();
+  images.canvasBackground.src = "images/canvas_background.jpg"
+
   playerX = floorX + floorWidth / 2 - playerWidth / 2;
   playerY = floorY + floorHeight / 2 - playerHeight / 2;
 
@@ -83,6 +86,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!isGameOver) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.drawImage(images.canvasBackground, 0, 0, canvas.width, canvas.height);
 
       ctx.drawImage(images.background, floorX, floorY, floorWidth, floorHeight); ////////
       update();
