@@ -1,12 +1,16 @@
 import MonsterManager from "./monsterManager.js";
 import { checkCollision } from "./collision.js";
-import Monster from "./zombie.js";
+
 
 document.addEventListener("DOMContentLoaded", function () {
   let canvas = document.getElementById("canvas");
   let ctx = canvas.getContext("2d");
   let monsterSpawnInterval;
   let keys = {};
+  let score = 0; //
+  const scoreTextSize = 30; //
+  let lastUpdateTime = Date.now(); //
+  const scoreIncreaseInterval = 1000; //
   let isGameOver = false;
   let isGameRunning = false;
   const monsterManager = new MonsterManager();
@@ -25,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let playerFrameY = 3;
   const playerSpeed = 7;
   let playerDirection = "right";
+
 
   document.addEventListener("keydown", function (event) {
     keys[event.code] = true;
@@ -52,6 +57,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH) {
     ctx.drawImage(img, sX, sY, sW, sH, dX, dY, dW, dH);
+  }
+
+  function updateScoreDisplay() {
+    document.getElementById("scoreOverlay").innerText = `Score: ${score}`;
   }
 
   function animate() {
@@ -84,6 +93,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function update() {
+    let currentTime = Date.now(); //
+    if (currentTime - lastUpdateTime >= scoreIncreaseInterval) {
+      score++;
+      lastUpdateTime = currentTime;
+      updateScoreDisplay(); ////////
+    } //////////////
      if (keys["ArrowUp"]) {
       playerY -= playerSpeed;
       playerDirection = "up";
@@ -158,7 +173,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const textX = floorX + (floorWidth - textWidth) / 2;
     const textY = floorY + floorHeight / 2 + textSize / 2;
     ctx.fillText(text, textX, textY);
-  }
+
+    document.getElementById("scoreOverlay").innerText = `Final Score: ${score}`;
+    
+  } 
 
   function initializeGame() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -168,6 +186,8 @@ document.addEventListener("DOMContentLoaded", function () {
     playerX = floorX + floorWidth / 2 - playerWidth / 2;
     playerY = floorY + floorHeight / 2 - playerHeight / 2;
     playerDirection = "right";
+    score = 0; //////////
+    lastUpdateTime = Date.now(); ///////////////
     monsterManager.reset();
     if (monsterSpawnInterval) {
       clearInterval(monsterSpawnInterval);
@@ -179,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
         floorY,
         floorHeight
       );
-    }, 1000);
+    }, 500);
 
     if (!isGameRunning) {
       isGameRunning = true;

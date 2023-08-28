@@ -10,7 +10,7 @@ const monsterTypes = [
     framesX: 3,
     framesY: 4,
     type: "zombie",
-    speed: 4
+    speed: 5
   },
   {
     spriteSrc: "images/imp.png",
@@ -28,8 +28,8 @@ const monsterTypes = [
     framesX: 3,
     framesY: 4,
     type: "sheepman",
-    speed: 2,
-    spawnRate: 0.35
+    speed: 3,
+    spawnRate: 0.4
   }
 ];
 
@@ -44,7 +44,7 @@ function shuffleArray(array) {
 export default class MonsterManager {
   constructor() {
     this.monsters = [];
-    this.maxMonsters = 10;
+    this.maxMonsters = 30;
     this.sides = shuffleArray([0, 1, 2, 3]);
   }
 
