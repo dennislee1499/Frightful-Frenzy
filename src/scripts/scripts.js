@@ -33,13 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const playerSpeed = 7;
   let playerDirection = "right";
 
-    // document
-    //   .getElementById("startGameButton")
-    //   .addEventListener("click", function () {
-    //     document.getElementById("instructionsOverlay").style.display = "none";
-    //     floor.style.display = "block"; 
-    //     initializeGame();
-    //   });
+  document
+    .getElementById("startGameButton")
+    .addEventListener("click", function () {
+      document.getElementById("instructionsOverlay").style.display = "none";
+      floor.style.display = "block";
+      initializeGame();
+    }); ////////////
 
 
 

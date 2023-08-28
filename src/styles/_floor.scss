@@ -10,7 +10,7 @@
     width: 85%;
     height: 85%;
     background: url("../../images/brick2.bmp.png");
-    z-index: 1;
+    z-index: 2;
 }
 canvas {
     position: absolute;
@@ -18,7 +18,6 @@ canvas {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 2;
-    // background-image: url("../../images/background.webp");
+    z-index: 1;
 }
 
