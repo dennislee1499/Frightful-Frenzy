@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let score = 0; //
   const scoreTextSize = 30; //
   let lastUpdateTime = Date.now(); //
-  const scoreIncreaseInterval = 1000; //
+  const scoreIncreaseInterval = 100; //
   let isGameOver = false;
   let isGameRunning = false;
   const monsterManager = new MonsterManager();
@@ -173,9 +173,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const textX = floorX + (floorWidth - textWidth) / 2;
     const textY = floorY + floorHeight / 2 + textSize / 2;
     ctx.fillText(text, textX, textY);
-
+    // const gameOverOverlay = document.getElementById("gameOverOverlay");
+    // gameOverOverlay.style.display = "flex";
     document.getElementById("scoreOverlay").innerText = `Final Score: ${score}`;
-    
+
   } 
 
   function initializeGame() {
