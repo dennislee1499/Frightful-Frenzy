@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const playerWidth = 95;
   const playerHeight = 95;
-  const buffer = 40; 
+  const buffer = 30; 
   let playerX;
   let playerY;
   let playerFrameX = 3;
