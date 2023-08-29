@@ -78,6 +78,28 @@ document.addEventListener("DOMContentLoaded", function () {
     ctx.drawImage(img, sX, sY, sW, sH, dX, dY, dW, dH);
   }
 
+
+  function drawStaticComponents() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(images.canvasBackground, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(images.background, floorX, floorY, floorWidth, floorHeight);
+    playerX = floorX + floorWidth / 2 - playerWidth / 2;
+    playerY = floorY + floorHeight / 2 - playerHeight / 2;
+    drawSprite(
+      images.player,
+      playerWidth * playerFrameX,
+      playerHeight * playerFrameY,
+      playerWidth,
+      playerHeight,
+      playerX,
+      playerY,
+      playerWidth,
+      playerHeight
+    );
+  }
+
+
+
   function updateScoreDisplay() {
     document.getElementById("scoreOverlay").innerText = `Score: ${score}`;
   }
@@ -253,9 +275,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // images.player.onload = function () {
-  //   initializeGame();
-  // };
+  images.player.onload = function () {
+    drawStaticComponents();
+  };
 
   window.addEventListener("resize", function () {
     canvas.height = window.innerHeight;
