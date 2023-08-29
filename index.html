@@ -34,6 +34,7 @@
       font-family: 'Creepster', cursive;
       font-size: 2em;
       color: red;
+      letter-spacing: 10px;
       text-shadow: 2px 2px 0 #000,
         4px 4px 0 #000,
         6px 6px 0 #000,
@@ -53,7 +54,7 @@
     }
 
     #githubLink img {
-      filter: invert(1);
+      filter: invert(0.7) brightness(0.8) contrast(1.2);
       box-shadow: 0 0 15px #fff, 0 0 20px #fff, 0 0 25px #fff, 0 0 30px #fff;
       transition: box-shadow 0.3s ease;
     }
@@ -107,9 +108,23 @@
     <div id="scoreOverlay">Score: 0</div>
   </div>
 
+  <div id="volumeControl"
+    style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 9999;">
+    <label for="volumeSlider">Volume: </label>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+  </div>
+  
+  <button id="muteButton"
+    style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 9999;">Mute</button>
+
   <a href="https://github.com/dennislee1499/Frightful-Frenzy" target="_blank" id="githubLink">
     <img src="images/github-mark.png" alt="View on GitHub" width="40" height="40">
   </a>
+
+  <audio loop id="bgMusic">
+    <source src="./images/onlymp3.to - Lennon Hutton The Slasher Royalty Free Music -jnangoZ7YDA-192k-1693330882.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <canvas id="canvas"></canvas>
 
@@ -121,6 +136,9 @@
       document.getElementById("gameTitle").style.display = "block";
       document.getElementById("scoreOverlay").style.display = "block";
       document.getElementById("githubLink").style.display = "block";
+      document.getElementById("bgMusic").play();
+      document.getElementById("volumeControl").style.display = "block";
+      document.getElementById("muteButton").style.display = "block";
     });
   </script>
 </body>

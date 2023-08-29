@@ -40,7 +40,32 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("instructionsOverlay").style.display = "none";
       floor.style.display = "block";
       initializeGame();
+      let bgMusic = document.getElementById("bgMusic");
+      bgMusic.play(); //////////////////
     }); 
+
+
+    document
+      .getElementById("volumeSlider")
+      .addEventListener("input", function () {
+        let bgMusic = document.getElementById("bgMusic");
+        bgMusic.volume = this.value;
+      });
+
+      document
+        .getElementById("muteButton")
+        .addEventListener("click", function () {
+          let bgMusic = document.getElementById("bgMusic");
+
+          if (bgMusic.muted) {
+            bgMusic.muted = false;
+            this.innerText = "Mute"; 
+          } else {
+            bgMusic.muted = true;
+            this.innerText = "Unmute"; 
+          }
+        });
+
 
 
 
