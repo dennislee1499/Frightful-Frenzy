@@ -46,6 +46,11 @@ export default class MonsterManager {
     this.monsters = [];
     this.maxMonsters = 30;
     this.sides = shuffleArray([0, 1, 2, 3]);
+    this.score = 0;
+  }
+
+  updateScore(newScore) {
+    this.score = newScore;
   }
 
   reset() {
@@ -70,21 +75,22 @@ export default class MonsterManager {
       return;
     }
 
-    const randomMonsterType = monsterTypes[Math.floor(Math.random() * monsterTypes.length)];
+    const randomMonsterType =
+      monsterTypes[Math.floor(Math.random() * monsterTypes.length)];
 
     if (Math.random() > randomMonsterType.spawnRate) {
       return;
     }
 
-     const side = this.getNextSide();
-     let x, y;
-     const monsterWidth = randomMonsterType.width;
-     const monsterHeight = randomMonsterType.height;
+    const side = this.getNextSide();
+    let x, y;
+    const monsterWidth = randomMonsterType.width;
+    const monsterHeight = randomMonsterType.height;
 
     switch (side) {
       case 0: // Top side
         x = floorX + Math.random() * (floorWidth - monsterWidth);
-        y = floorY; 
+        y = floorY;
         break;
       case 1: // Right side
         x = floorX + floorWidth - monsterWidth;
@@ -92,10 +98,10 @@ export default class MonsterManager {
         break;
       case 2: // Bottom side
         x = floorX + Math.random() * (floorWidth - monsterWidth);
-        y = floorY + floorHeight - monsterHeight; 
+        y = floorY + floorHeight - monsterHeight;
         break;
       case 3: // Left side
-        x = floorX; 
+        x = floorX;
         y = floorY + Math.random() * (floorHeight - monsterHeight);
         break;
     }
@@ -111,6 +117,14 @@ export default class MonsterManager {
       randomMonsterType.type,
       randomMonsterType.speed
     );
+
+    const speedIncreaseFactor = 1 + 0.05 * Math.floor(this.score / 100);
+    monster.speed *= speedIncreaseFactor;
+    // const speedIncreaseByScore = 5 * Math.floor(this.score / 100); // This gives how many times the base speed should be increased by.
+    // const speedIncreaseFactor = 1 + speedIncreaseByScore;
+    // monster.speed *= speedIncreaseFactor;
+
+
 
     switch (side) {
       case 0:
@@ -129,7 +143,6 @@ export default class MonsterManager {
 
     this.monsters.push(monster);
   }
-
 
   updateAll(floorX, floorWidth, floorY, floorHeight) {
     for (let i = this.monsters.length - 1; i >= 0; i--) {

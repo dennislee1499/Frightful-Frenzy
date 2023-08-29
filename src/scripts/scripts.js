@@ -206,6 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
       score++;
       lastUpdateTime = currentTime;
       updateScoreDisplay(); 
+      monsterManager.updateScore(score); 
     } 
      if (keys["ArrowUp"]) {
       playerY -= playerSpeed;
