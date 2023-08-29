@@ -256,8 +256,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    const gameOverOverlay = document.getElementById("gameOverOverlay");
-    gameOverOverlay.style.display = "flex"; 
+    const gameOverOverlay = document.getElementById("gameOverOverlay"); 
+    if (gameOverOverlay) {
+      gameOverOverlay.style.display = "flex";
+    }
+
     document.getElementById("scoreOverlay").innerText = `Final Score: ${score}`;
 
   } 
