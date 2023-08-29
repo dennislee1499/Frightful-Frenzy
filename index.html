@@ -54,15 +54,16 @@
     }
 
     #githubLink img {
-      filter: invert(0.7) brightness(0.8) contrast(1.2);
-      box-shadow: 0 0 15px #fff, 0 0 20px #fff, 0 0 25px #fff, 0 0 30px #fff;
-      transition: box-shadow 0.3s ease;
-    }
+  filter: invert(0.7) brightness(0.8) contrast(1.2) sepia(100%) saturate(500%);
+  box-shadow: 0 0 15px #fff, 0 0 20px #fff, 0 0 25px #fff, 0 0 30px #fff;
+  transition: box-shadow 0.3s ease;
+}
 
     #githubLink img:hover {
-      filter: invert(0.8);
-      box-shadow: 0 0 20px #fff, 0 0 25px #fff, 0 0 30px #fff, 0 0 35px #fff;
-    }
+  filter: invert(0.8) sepia(0%) saturate(100%);
+  box-shadow: 0 0 20px #fff, 0 0 25px #fff, 0 0 30px #fff, 0 0 35px #fff;
+}
+
 
     #githubLink {
       display: none;

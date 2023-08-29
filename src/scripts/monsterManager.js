@@ -120,10 +120,6 @@ export default class MonsterManager {
 
     const speedIncreaseFactor = 1 + 0.05 * Math.floor(this.score / 100);
     monster.speed *= speedIncreaseFactor;
-    // const speedIncreaseByScore = 5 * Math.floor(this.score / 100); // This gives how many times the base speed should be increased by.
-    // const speedIncreaseFactor = 1 + speedIncreaseByScore;
-    // monster.speed *= speedIncreaseFactor;
-
 
 
     switch (side) {
