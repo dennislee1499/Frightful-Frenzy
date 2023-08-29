@@ -86,6 +86,66 @@
       font-size: 24px;
       font-weight: bold;
     }
+
+    input[type="range"] {
+    -webkit-appearance: none; 
+    appearance: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background: white;
+    width: 100%;
+    height: 14px;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: red;
+    width: 10px;  
+    height: 14px; 
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+input[type="range"]::-moz-range-track {
+    background: white;
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    background: red;
+    width: 15px;  
+    height: 15px; 
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+
+input[type="range"]:focus {
+    outline: none;
+}
+
+input[type="range"]::-moz-focus-outer {
+    border: 0;
+}
+
+#audioControls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 9999;
+    display: none; 
+}
+
+
+
   </style>
 </head>
 
@@ -98,9 +158,26 @@
       <p>Use your arrow keys to move the player. The goal of the game is to stay alive and avoid the monsters. Good
         Luck!</p>
       <p>Press 'R' key to restart the game if you lose.</p>
+      <p>Adjust volume accordingly</p>
+      <p>If you think you're ready, click Start Game</p>
       <button id="startGameButton">Start Game</button>
+        <div id="volumeControl" style="margin-top: 50px;">
+          <label for="volumeSlider">Volume: </label>
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+        </div>
+        <button id="muteButton" style="margin-top: 10px;">Mute</button>
     </div>
   </div>
+
+  <div id="audioControls">
+    <div id="inGameVolumeControl">
+      <label for="inGameVolumeSlider">Volume: </label>
+      <input type="range" id="inGameVolumeSlider" min="0" max="1" step="0.1" value="1">
+    </div>
+    <button id="inGameMuteButton">Mute</button>
+  </div>
+
+
 
   <div class="game-container">
     <div id="gameTitle">FRIGHTFUL FRENZY</div>
@@ -108,14 +185,6 @@
     <div id="scoreOverlay">Score: 0</div>
   </div>
 
-  <div id="volumeControl"
-    style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 9999;">
-    <label for="volumeSlider">Volume: </label>
-    <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
-  </div>
-  
-  <button id="muteButton"
-    style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 9999;">Mute</button>
 
   <a href="https://github.com/dennislee1499/Frightful-Frenzy" target="_blank" id="githubLink">
     <img src="images/github-mark.png" alt="View on GitHub" width="40" height="40">

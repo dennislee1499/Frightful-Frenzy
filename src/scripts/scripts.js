@@ -37,11 +37,24 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("startGameButton")
     .addEventListener("click", function () {
+      // document.getElementById("instructionsOverlay").style.display = "none";
+      // floor.style.display = "block";
+      // initializeGame();
+      // let bgMusic = document.getElementById("bgMusic");
+      // bgMusic.play(); //////////////////
+      document.getElementById("gameTitle").style.display = "block";
+      document.getElementById("scoreOverlay").style.display = "block";
+      document.getElementById("githubLink").style.display = "block";
       document.getElementById("instructionsOverlay").style.display = "none";
       floor.style.display = "block";
       initializeGame();
-      let bgMusic = document.getElementById("bgMusic");
-      bgMusic.play(); //////////////////
+      document.getElementById("bgMusic").play();
+      let audioControls = document.getElementById("audioControls");
+      audioControls.style.position = "absolute";
+      audioControls.style.top = "auto";
+      audioControls.style.left = "10px";
+      audioControls.style.bottom = "10px";
+      audioControls.style.display = "block";
     }); 
 
 
@@ -66,6 +79,27 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         });
 
+
+        document
+          .getElementById("inGameVolumeSlider")
+          .addEventListener("input", function () {
+            let bgMusic = document.getElementById("bgMusic");
+            bgMusic.volume = this.value;
+          });
+
+        document
+          .getElementById("inGameMuteButton")
+          .addEventListener("click", function () {
+            let bgMusic = document.getElementById("bgMusic");
+
+            if (bgMusic.muted) {
+              bgMusic.muted = false;
+              this.innerText = "Mute";
+            } else {
+              bgMusic.muted = true;
+              this.innerText = "Unmute";
+            }
+          });
 
 
 
