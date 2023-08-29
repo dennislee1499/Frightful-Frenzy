@@ -4,6 +4,9 @@ import { checkCollision } from "./collision.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   let floor = document.querySelector(".floor"); //////////
+  if (floor) {
+    floor.style.display = "block";
+  }
   floor.style.display = "none"; //////////
 
   let canvas = document.getElementById("canvas");
@@ -79,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
+  /// allows game to seem paused in background as user reads instructions
   function drawStaticComponents() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(images.canvasBackground, 0, 0, canvas.width, canvas.height);
@@ -205,6 +209,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function gameOver() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the entire canvas first.
+    ctx.drawImage(images.canvasBackground, 0, 0, canvas.width, canvas.height); // Draw the background.
+    ctx.drawImage(images.background, floorX, floorY, floorWidth, floorHeight);  // Draw the floor 
     if (monsterSpawnInterval) {
       clearInterval(monsterSpawnInterval);
     }
@@ -241,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     const gameOverOverlay = document.getElementById("gameOverOverlay");
-    gameOverOverlay.style.display = "flex"; /////////
+    // gameOverOverlay.style.display = "flex"; /////////
     document.getElementById("scoreOverlay").innerText = `Final Score: ${score}`;
 
   } 
@@ -284,8 +291,15 @@ document.addEventListener("DOMContentLoaded", function () {
     canvas.width = window.innerWidth;
     floorX = (canvas.width - floorWidth) / 2;
     floorY = (canvas.height - floorHeight) / 2;
+    if (isGameOver) {
+      gameOver();
+    } else {
+      drawStaticComponents();
+    }
   });
 });
+
+
 
 
 
