@@ -4,9 +4,6 @@ import { checkCollision } from "./collision.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   let floor = document.querySelector(".floor"); 
-  // if (floor) {
-  //   floor.style.display = "block";
-  // }
   floor.style.display = "none";
 
   let canvas = document.getElementById("canvas");
@@ -20,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let isGameOver = false;
   let isGameRunning = false;
   const monsterManager = new MonsterManager();
+  // const game = new Game();
 
   const floorWidth = 1300;
   const floorHeight = 665.55;
@@ -219,9 +217,10 @@ document.addEventListener("DOMContentLoaded", function () {
     isGameRunning = false;
 
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the entire canvas first.
-    ctx.drawImage(images.canvasBackground, 0, 0, canvas.width, canvas.height); // Draw the background.
-    ctx.drawImage(images.background, floorX, floorY, floorWidth, floorHeight);  // Draw the floor 
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    ctx.drawImage(images.canvasBackground, 0, 0, canvas.width, canvas.height); 
+    ctx.drawImage(images.background, floorX, floorY, floorWidth, floorHeight);  
+    
     if (monsterSpawnInterval) {
       clearInterval(monsterSpawnInterval);
     }
