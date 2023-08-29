@@ -3,20 +3,20 @@ import { checkCollision } from "./collision.js";
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  let floor = document.querySelector(".floor"); //////////
-  if (floor) {
-    floor.style.display = "block";
-  }
-  floor.style.display = "none"; //////////
+  let floor = document.querySelector(".floor"); 
+  // if (floor) {
+  //   floor.style.display = "block";
+  // }
+  floor.style.display = "none";
 
   let canvas = document.getElementById("canvas");
   let ctx = canvas.getContext("2d");
   let monsterSpawnInterval;
   let keys = {};
-  let score = 0; //
-  const scoreTextSize = 30; //
-  let lastUpdateTime = Date.now(); //
-  const scoreIncreaseInterval = 100; //
+  let score = 0; 
+  const scoreTextSize = 30; 
+  let lastUpdateTime = Date.now(); 
+  const scoreIncreaseInterval = 100; 
   let isGameOver = false;
   let isGameRunning = false;
   const monsterManager = new MonsterManager();
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("instructionsOverlay").style.display = "none";
       floor.style.display = "block";
       initializeGame();
-    }); ////////////
+    }); 
 
 
 
@@ -108,46 +108,48 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("scoreOverlay").innerText = `Score: ${score}`;
   }
 
+
   function animate() {
-    if (!isGameRunning) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(images.canvasBackground, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(images.background, floorX, floorY, floorWidth, floorHeight);
 
-    if (!isGameOver) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    update();
 
-      ctx.drawImage(images.canvasBackground, 0, 0, canvas.width, canvas.height);
+    drawSprite(
+      images.player,
+      playerWidth * playerFrameX,
+      playerHeight * playerFrameY,
+      playerWidth,
+      playerHeight,
+      playerX,
+      playerY,
+      playerWidth,
+      playerHeight
+    );
 
-      ctx.drawImage(images.background, floorX, floorY, floorWidth, floorHeight); ////////
-      update();
+    monsterManager.updateAll(floorX, floorWidth, floorY, floorHeight);
+    monsterManager.drawAll(ctx);
+    playerFrameX = (playerFrameX + 1) % 4;
 
-      drawSprite(
-        images.player,
-        playerWidth * playerFrameX,
-        playerHeight * playerFrameY,
-        playerWidth,
-        playerHeight,
-        playerX,
-        playerY,
-        playerWidth,
-        playerHeight
-      );
-
-      monsterManager.updateAll(floorX, floorWidth, floorY, floorHeight);
-      monsterManager.drawAll(ctx);
-      playerFrameX = (playerFrameX + 1) % 4;
-    } else {
+    if (isGameOver) {
       gameOver();
+    } else {
+      requestAnimationFrame(animate);
+      // drawStaticComponents();
     }
-
-    requestAnimationFrame(animate);
   }
 
+
+
   function update() {
-    let currentTime = Date.now(); //
+    if (isGameOver) return;
+    let currentTime = Date.now(); 
     if (currentTime - lastUpdateTime >= scoreIncreaseInterval) {
       score++;
       lastUpdateTime = currentTime;
-      updateScoreDisplay(); ////////
-    } //////////////
+      updateScoreDisplay(); 
+    } 
      if (keys["ArrowUp"]) {
       playerY -= playerSpeed;
       playerDirection = "up";
@@ -209,6 +211,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function gameOver() {
+
+    if (monsterSpawnInterval) {
+      clearInterval(monsterSpawnInterval);
+    }
+    isGameOver = true;
+    isGameRunning = false;
+
+
     ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the entire canvas first.
     ctx.drawImage(images.canvasBackground, 0, 0, canvas.width, canvas.height); // Draw the background.
     ctx.drawImage(images.background, floorX, floorY, floorWidth, floorHeight);  // Draw the floor 
@@ -248,10 +258,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     const gameOverOverlay = document.getElementById("gameOverOverlay");
-    // gameOverOverlay.style.display = "flex"; /////////
+    gameOverOverlay.style.display = "flex"; 
     document.getElementById("scoreOverlay").innerText = `Final Score: ${score}`;
 
   } 
+
 
   function initializeGame() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -264,6 +275,7 @@ document.addEventListener("DOMContentLoaded", function () {
     score = 0; //////////
     lastUpdateTime = Date.now(); ///////////////
     monsterManager.reset();
+
     if (monsterSpawnInterval) {
       clearInterval(monsterSpawnInterval);
     }
@@ -274,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function () {
         floorY,
         floorHeight
       );
-    }, 500);
+    }, 750);
 
     if (!isGameRunning) {
       isGameRunning = true;
