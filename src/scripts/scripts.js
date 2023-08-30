@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let isGameOver = false;
   let isGameRunning = false;
   const monsterManager = new MonsterManager();
-  // const game = new Game();
+  
 
   const floorWidth = 1300;
   const floorHeight = 665.55;
@@ -37,11 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("startGameButton")
     .addEventListener("click", function () {
-      // document.getElementById("instructionsOverlay").style.display = "none";
-      // floor.style.display = "block";
-      // initializeGame();
-      // let bgMusic = document.getElementById("bgMusic");
-      // bgMusic.play(); //////////////////
       document.getElementById("gameTitle").style.display = "block";
       document.getElementById("scoreOverlay").style.display = "block";
       document.getElementById("githubLink").style.display = "block";
@@ -193,7 +188,6 @@ document.addEventListener("DOMContentLoaded", function () {
       gameOver();
     } else {
       requestAnimationFrame(animate);
-      // drawStaticComponents();
     }
   }
 
