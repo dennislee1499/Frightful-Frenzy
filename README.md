@@ -17,9 +17,17 @@ In Frightful Frenzy, users will be able to:
 ![frightdemo](https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/71665bbd-51ae-440e-9aec-92bcc95fd5d2)
 
 The arrow keys on the keyboard allow players to move the character left, right, up and down. Based on the movement of the character, the correct animation will be displayed.
-<img width="421" alt="Screenshot 2023-08-30 at 1 31 11 PM" src="https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/031fa185-13dd-44de-aeb8-ed2ddbf98c2a">
 
-<img width="271" alt="Screenshot 2023-08-30 at 1 32 11 PM" src="https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/9dae7a68-d5e9-4218-8cdc-d27f96531617">
+
+
+
+<img width="427" alt="Screenshot 2023-08-30 at 1 36 07 PM" src="https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/fb7518cd-208a-41ab-a39b-08f20734e949">
+
+
+
+
+<img width="271" alt="Screenshot 2023-08-30 at 1 32 11 PM" src="https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/4d2c9319-2a60-4f18-87af-2fecf00595a8">
+
 
 
 
