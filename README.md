@@ -13,6 +13,9 @@ In Frightful Frenzy, users will be able to:
 
 - Start and restart the game if a collision with a monster occurs
 - Use the arrow keys to control the movement of their character
+
+`![Screen Recording](giphy.mp4)`
+  
 - Experience higher difficulty as the game progresses
 - Feel a sense of achievement as you strive to beat your previous high score
 
