@@ -13,10 +13,12 @@ In Frightful Frenzy, users will be able to:
 
 - Start and restart the game if a collision with a monster occurs
 
+
+
   
+![gameover](https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/d5868250-6128-47be-9aba-2bb854586819)
 
 
-![gameover](https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/a69b7706-e02a-40aa-9be3-cd2389b9ec69)
 
 
 
