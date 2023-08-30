@@ -12,6 +12,23 @@ Frightful Frenzy is a 2d game where your main goal is to stay alive! With each s
 In Frightful Frenzy, users will be able to:
 
 - Start and restart the game if a collision with a monster occurs
+
+The overall design of the game relies heavily on collision detection. The logic works by checking for axis-aligned bounding box collisions. The code loops over each monster in the monsterManager.monsters array and checks for a collision with the player. If the player happens to collide with a monster, the game ends by calling the game over function. 
+
+  
+
+<img width="343" alt="Screenshot 2023-08-30 at 1 45 24 PM" src="https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/616ba5b0-8246-4ba6-aa30-371965758b2d">
+
+
+
+
+<img width="371" alt="Screenshot 2023-08-30 at 1 46 10 PM" src="https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/4b42462e-f384-452b-9b5b-5e247d9fadb3">
+
+
+
+
+
+
 - Use the arrow keys to control the movement of their character
 
 ![frightdemo](https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/71665bbd-51ae-440e-9aec-92bcc95fd5d2)
@@ -33,6 +50,14 @@ The arrow keys on the keyboard allow players to move the character left, right, 
 
 
 - Experience higher difficulty as the game progresses
+
+Every 100 score interval, the monsters speed will increase by 5% giving the user more of a challenge to overcome. 
+
+<img width="526" alt="Screenshot 2023-08-30 at 1 39 29 PM" src="https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/a7e0ef77-138a-48c2-a324-2db6ec4d30b8">
+
+
+
+
 - Feel a sense of achievement as you strive to beat your previous high score
 
 ## Wireframes 
