@@ -16,6 +16,14 @@ In Frightful Frenzy, users will be able to:
 
 ![frightdemo](https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/71665bbd-51ae-440e-9aec-92bcc95fd5d2)
 
+The arrow keys on the keyboard allow players to move the character left, right, up and down. Based on the movement of the character, the correct animation will be displayed.
+<img width="421" alt="Screenshot 2023-08-30 at 1 31 11 PM" src="https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/031fa185-13dd-44de-aeb8-ed2ddbf98c2a">
+
+<img width="271" alt="Screenshot 2023-08-30 at 1 32 11 PM" src="https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/9dae7a68-d5e9-4218-8cdc-d27f96531617">
+
+
+
+
 - Experience higher difficulty as the game progresses
 - Feel a sense of achievement as you strive to beat your previous high score
 
