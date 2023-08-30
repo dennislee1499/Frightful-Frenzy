@@ -13,6 +13,14 @@ In Frightful Frenzy, users will be able to:
 
 - Start and restart the game if a collision with a monster occurs
 
+  
+
+
+![gameover](https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/a69b7706-e02a-40aa-9be3-cd2389b9ec69)
+
+
+
+
 The overall design of the game relies heavily on collision detection. The logic works by checking for axis-aligned bounding box collisions. The code loops over each monster in the monsterManager.monsters array and checks for a collision with the player. If the player happens to collide with a monster, the game ends by calling the game over function. 
 
   
