@@ -4,6 +4,11 @@ Description:
 
 Frightful Frenzy is a 2d game where your main goal is to stay alive! With each step you take and each monster you successfully evade, your score steadily climbs. Be prepared for the incoming onslaught because as your score gets higher, the speed of the monsters increase as well. Do you have what it takes to master the art of avoidance and secure your place as the ultimate monster dodging champion? 
 
+
+Here's my [Live Site](https://dennislee1499.github.io/Frightful-Frenzy/)
+
+
+
 <img width="1440" alt="Screenshot 2023-08-30 at 9 12 48 AM" src="https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/0507e727-ee50-4ca0-930e-5fde90ec441f">
 
 
