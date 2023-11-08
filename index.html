@@ -96,11 +96,7 @@
       right: 28vw;
       z-index: 9999;
       color: white;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 5px;
-      border-radius: 5px;
-      display: block;
+      display: none;
       font-size: 24px;
       font-weight: bold;
     }
@@ -224,6 +220,10 @@ input[type="range"]::-moz-focus-outer {
   <audio loop id="bgMusic">
     <source src="./images/onlymp3.to - Lennon Hutton The Slasher Royalty Free Music -jnangoZ7YDA-192k-1693330882.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
+  </audio>
+
+  <audio id="collisionSound" preload="auto">
+    <source src="images/player-death-scream.mp3" >
   </audio>
 
   <canvas id="canvas"></canvas>

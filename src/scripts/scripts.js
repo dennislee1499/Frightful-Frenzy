@@ -244,6 +244,9 @@ document.addEventListener("DOMContentLoaded", function () {
         width: playerWidth - (buffer * 2),
         height: playerHeight - (buffer * 2),
       }, monster)) {
+        let collisionSound = document.getElementById("collisionSound");
+        collisionSound.currentTime = 0;
+        collisionSound.play();
         gameOver();
         return;
       }
