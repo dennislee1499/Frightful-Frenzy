@@ -91,19 +91,26 @@
 
 
     #scoreOverlay {
-      position: fixed;
-      top: 65px;
-      left: 80px;
+      position: absolute;
+      top: 10vh;
+      right: 28vw;
       z-index: 9999;
       color: white;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
       background-color: rgba(0, 0, 0, 0.5);
       padding: 5px;
       border-radius: 5px;
-      display: none;
+      display: block;
       font-size: 24px;
       font-weight: bold;
     }
+
+    @media (min-width: 1500px) {
+  #scoreOverlay {
+    top: 17vh;
+    right: 13vw;
+  }
+}
 
     input[type="range"] {
     -webkit-appearance: none; 
