@@ -88,19 +88,19 @@ export default class MonsterManager {
     const monsterHeight = randomMonsterType.height;
 
     switch (side) {
-      case 0: // Top side
+      case 0: 
         x = floorX + Math.random() * (floorWidth - monsterWidth);
         y = floorY;
         break;
-      case 1: // Right side
+      case 1: 
         x = floorX + floorWidth - monsterWidth;
         y = floorY + Math.random() * (floorHeight - monsterHeight);
         break;
-      case 2: // Bottom side
+      case 2: 
         x = floorX + Math.random() * (floorWidth - monsterWidth);
         y = floorY + floorHeight - monsterHeight;
         break;
-      case 3: // Left side
+      case 3: 
         x = floorX;
         y = floorY + Math.random() * (floorHeight - monsterHeight);
         break;
@@ -124,16 +124,16 @@ export default class MonsterManager {
 
     switch (side) {
       case 0:
-        monster.direction = "down"; // should run downwards
+        monster.direction = "down"; 
         break;
       case 1:
-        monster.direction = "left"; // should run leftwards
+        monster.direction = "left"; 
         break;
       case 2:
-        monster.direction = "up"; // should run upwards
+        monster.direction = "up"; 
         break;
       case 3:
-        monster.direction = "right"; // should run rightwards
+        monster.direction = "right"; 
         break;
     }
 

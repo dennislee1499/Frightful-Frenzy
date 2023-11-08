@@ -42,8 +42,25 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("githubLink").style.display = "block";
       document.getElementById("instructionsOverlay").style.display = "none";
       floor.style.display = "block";
+
       initializeGame();
-      document.getElementById("bgMusic").play();
+      let bgMusic = document.getElementById("bgMusic");
+      let introVolumeSlider = document.getElementById("volumeSlider");
+      bgMusic.volume = introVolumeSlider.value;
+      let inGameVolumeSlider = document.getElementById("inGameVolumeSlider");
+      if (inGameVolumeSlider) {
+        inGameVolumeSlider.value = introVolumeSlider.value;
+      }
+
+      let inGameMuteButton = document.getElementById("inGameMuteButton");
+      if (inGameMuteButton) {
+        inGameMuteButton.innerText = bgMusic.muted ? "Unmute" : "Mute";
+      }
+
+
+      bgMusic.play();
+  
+
       let audioControls = document.getElementById("audioControls");
       audioControls.style.position = "absolute";
       audioControls.style.top = "auto";
@@ -134,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  /// allows game to seem paused in background as user reads instructions
+  
   function drawStaticComponents() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(images.canvasBackground, 0, 0, canvas.width, canvas.height);
@@ -202,6 +219,8 @@ document.addEventListener("DOMContentLoaded", function () {
       updateScoreDisplay(); 
       monsterManager.updateScore(score); 
     } 
+
+    
      if (keys["ArrowUp"]) {
       playerY -= playerSpeed;
       playerDirection = "up";
@@ -215,6 +234,8 @@ document.addEventListener("DOMContentLoaded", function () {
       playerX += playerSpeed;
       playerDirection = "right";
   }
+
+  
   boundaryChecks();
   for (const monster of monsterManager.monsters) {
       if (checkCollision ({
@@ -233,15 +254,15 @@ document.addEventListener("DOMContentLoaded", function () {
     if (playerX + playerWidth > floorX + floorWidth) {
       playerX = floorX + floorWidth - playerWidth;
     }
-    // Left boundary
+    
     if (playerX < floorX) {
       playerX = floorX;
     }
-    // Bottom boundary
+    
     if (playerY + playerHeight > floorY + floorHeight) {
       playerY = floorY + floorHeight - playerHeight;
     }
-    // Top boundary
+   
     if (playerY < floorY) {
       playerY = floorY;
     }
@@ -328,8 +349,8 @@ document.addEventListener("DOMContentLoaded", function () {
     playerX = floorX + floorWidth / 2 - playerWidth / 2;
     playerY = floorY + floorHeight / 2 - playerHeight / 2;
     playerDirection = "right";
-    score = 0; //////////
-    lastUpdateTime = Date.now(); ///////////////
+    score = 0; 
+    lastUpdateTime = Date.now(); 
     monsterManager.reset();
 
     if (monsterSpawnInterval) {
