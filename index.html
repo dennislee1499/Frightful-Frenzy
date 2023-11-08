@@ -66,12 +66,29 @@
 
 
     #githubLink {
-      display: none;
+      display: block;
       position: absolute;
-      top: 65px;
-      right: 80px;
+      bottom: 0.625rem; 
+      right: 0.625rem;
       z-index: 10000;
     }
+
+    #linkedinLink {
+      display: block;
+      position: absolute;
+      bottom: 0.625rem;
+      right: 5rem;
+      z-index: 10000;
+    }
+
+    #linkedinLink img {
+    transition: filter 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #linkedinLink img:hover {
+      filter: brightness(1.5); 
+    }
+
 
     #scoreOverlay {
       position: fixed;
@@ -136,8 +153,8 @@ input[type="range"]::-moz-focus-outer {
 
 #audioControls {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: 0.625rem;
+    left: 0.625rem;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 5px;
     border-radius: 5px;
@@ -191,6 +208,10 @@ input[type="range"]::-moz-focus-outer {
 
   <a href="https://github.com/dennislee1499/Frightful-Frenzy" target="_blank" id="githubLink">
     <img src="images/github-mark.png" alt="View on GitHub" width="40" height="40">
+  </a>
+
+  <a href="https://www.linkedin.com/in/dennislee-/" target="_blank" id="linkedinLink">
+    <img src="images/linkedin-mark.png" alt="View on Linkedin" width="40" height="40">
   </a>
 
   <audio loop id="bgMusic">
