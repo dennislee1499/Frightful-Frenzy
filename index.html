@@ -215,7 +215,8 @@ button#inGameMuteButton {
 }
 
 button#muteButton:hover,
-button#inGameMuteButton:hover {
+button#inGameMuteButton:hover,
+button#inGameInstructionsButton:hover {
   color: white;
   background-color: #404040; 
 }
@@ -227,6 +228,29 @@ button#inGameMuteButton:hover {
 
 #inGameMuteButton {
   margin-right: 5px; 
+}
+
+button#inGameInstructionsButton {
+  position: fixed;
+  top: 10vh;
+  right: 7vw;
+  width: 150px;
+  font-family: 'Creepster', cursive;
+  background-color: #202020; 
+  color: #ff0000; 
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 9999;
+  display: none;
+}
+
+@media (min-width: 1800px) {
+  button#inGameInstructionsButton {
+    top: 17vh;
+    right: 17vw; 
+  }
 }
 
 
@@ -256,6 +280,15 @@ button#inGameMuteButton:hover {
     </div>
   </div>
 
+  <div id="instructionText" style="display: none;">
+    <h1>FRIGHTFUL FRENZY</h1>
+    <h2>Game Instructions</h2>
+    <p>Use your arrow keys to move the player. The goal of the game is to stay alive and avoid the monsters</p>
+    <p>Monsters speed will increase every 100 score interval</p>
+    <p>Press 'R' key to restart the game if you lose.</p>
+    <p>Adjust volume accordingly</p>
+  </div>
+
   <div id="audioControls">
     <div id="inGameVolumeControl" style="display: flex; align-items: center;">
       <button id="inGameMuteButton">Mute</button>
@@ -269,6 +302,8 @@ button#inGameMuteButton:hover {
     <div class="floor"></div>
     <div id="scoreOverlay">Score: 0</div>
   </div>
+
+  <button id="inGameInstructionsButton">Instructions</button>
 
 
   <a href="https://github.com/dennislee1499/Frightful-Frenzy" target="_blank" id="githubLink">

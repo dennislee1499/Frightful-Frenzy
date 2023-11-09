@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("gameTitle").style.display = "block";
       document.getElementById("scoreOverlay").style.display = "block";
       document.getElementById("githubLink").style.display = "block";
+      document.getElementById("inGameInstructionsButton").style.display = "block"
       document.getElementById("instructionsOverlay").style.display = "none";
       floor.style.display = "block";
 
@@ -118,6 +119,16 @@ document.addEventListener("DOMContentLoaded", function () {
              this.innerText = bgMusic.muted ? "Unmute" : "Mute";
              this.innerText = collisionSound.muted ? "Unmute" : "Mute";
           });
+
+          document
+            .getElementById("inGameInstructionsButton")
+            .addEventListener("click", function () {
+              let instructionsOverlay = document.getElementById(
+                "instructionsOverlay"
+              );
+              instructionsOverlay.style.display =
+                instructionsOverlay.style.display == "flex" ? "none" : "flex";
+            });
 
 
 
