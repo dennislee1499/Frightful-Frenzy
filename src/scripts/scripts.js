@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let monsterSpawnInterval;
   let keys = {};
   let score = 0; 
-  const scoreTextSize = 30; 
   let lastUpdateTime = Date.now(); 
   const scoreIncreaseInterval = 100; 
   let isGameOver = false;
@@ -177,11 +176,25 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("scoreOverlay").innerText = `Score: ${score}`;
   }
 
+  const animationFPS = 10;
+  const animationInterval = 1000 / animationFPS;
+  let lastFrameTime = Date.now();
+
 
   function animate() {
+    const now = Date.now();
+    const elapsed = now - lastFrameTime;
+
+    if (elapsed > animationInterval) {
+      lastFrameTime = now - (elapsed % animationInterval);
+
+      playerFrameX = (playerFrameX + 1) % 4;
+    }
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(images.canvasBackground, 0, 0, canvas.width, canvas.height);
     ctx.drawImage(images.background, floorX, floorY, floorWidth, floorHeight);
+
 
     update();
 
@@ -199,7 +212,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     monsterManager.updateAll(floorX, floorWidth, floorY, floorHeight);
     monsterManager.drawAll(ctx);
-    playerFrameX = (playerFrameX + 1) % 4;
 
     if (isGameOver) {
       gameOver();
