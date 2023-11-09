@@ -42,10 +42,16 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("instructionsOverlay").style.display = "none";
       floor.style.display = "block";
 
-      initializeGame();
       let bgMusic = document.getElementById("bgMusic");
+      let collisionSound = document.getElementById("collisionSound");
       let introVolumeSlider = document.getElementById("volumeSlider");
+
       bgMusic.volume = introVolumeSlider.value;
+      collisionSound.volume = introVolumeSlider.value;
+      collisionSound.muted = bgMusic.muted;
+
+
+
       let inGameVolumeSlider = document.getElementById("inGameVolumeSlider");
       if (inGameVolumeSlider) {
         inGameVolumeSlider.value = introVolumeSlider.value;
@@ -56,9 +62,8 @@ document.addEventListener("DOMContentLoaded", function () {
         inGameMuteButton.innerText = bgMusic.muted ? "Unmute" : "Mute";
       }
 
-
-      bgMusic.play();
   
+      initializeGame();
 
       let audioControls = document.getElementById("audioControls");
       audioControls.style.position = "absolute";
@@ -73,43 +78,45 @@ document.addEventListener("DOMContentLoaded", function () {
       .getElementById("volumeSlider")
       .addEventListener("input", function () {
         let bgMusic = document.getElementById("bgMusic");
+        let collisionSound = document.getElementById("collisionSound");
         bgMusic.volume = this.value;
+        collisionSound.volume = this.value;
       });
 
       document
         .getElementById("muteButton")
         .addEventListener("click", function () {
           let bgMusic = document.getElementById("bgMusic");
+          let collisionSound = document.getElementById("collisionSound");
 
-          if (bgMusic.muted) {
-            bgMusic.muted = false;
-            this.innerText = "Mute"; 
-          } else {
-            bgMusic.muted = true;
-            this.innerText = "Unmute"; 
-          }
+          bgMusic.muted = !bgMusic.muted;
+          collisionSound.muted = bgMusic.muted;
+          this.innerText = bgMusic.muted ? "Unmute" : "Mute";
         });
+
+        bgMusic.play();
 
 
         document
           .getElementById("inGameVolumeSlider")
           .addEventListener("input", function () {
             let bgMusic = document.getElementById("bgMusic");
+            let collisionSound = document.getElementById("collisionSound");
             bgMusic.volume = this.value;
+            collisionSound.volume = this.value;
           });
 
         document
           .getElementById("inGameMuteButton")
           .addEventListener("click", function () {
             let bgMusic = document.getElementById("bgMusic");
+            let collisionSound = document.getElementById("collisionSound");
 
-            if (bgMusic.muted) {
-              bgMusic.muted = false;
-              this.innerText = "Mute";
-            } else {
-              bgMusic.muted = true;
-              this.innerText = "Unmute";
-            }
+             bgMusic.muted = !bgMusic.muted;
+             collisionSound.muted = bgMusic.muted;
+
+             this.innerText = bgMusic.muted ? "Unmute" : "Mute";
+             this.innerText = collisionSound.muted ? "Unmute" : "Mute";
           });
 
 
@@ -257,8 +264,11 @@ document.addEventListener("DOMContentLoaded", function () {
         height: playerHeight - (buffer * 2),
       }, monster)) {
         let collisionSound = document.getElementById("collisionSound");
-        collisionSound.currentTime = 0;
-        collisionSound.play();
+
+         if (!collisionSound.muted) {
+           collisionSound.currentTime = 0; 
+           collisionSound.play(); 
+         }
         gameOver();
         return;
       }
