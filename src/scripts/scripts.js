@@ -120,15 +120,19 @@ document.addEventListener("DOMContentLoaded", function () {
              this.innerText = collisionSound.muted ? "Unmute" : "Mute";
           });
 
+
           document
             .getElementById("inGameInstructionsButton")
             .addEventListener("click", function () {
-              let instructionsOverlay = document.getElementById(
-                "instructionsOverlay"
+              let instructionsContainer = document.getElementById(
+                "instructionsContainer"
               );
-              instructionsOverlay.style.display =
-                instructionsOverlay.style.display == "flex" ? "none" : "flex";
+              instructionsContainer.style.display =
+                instructionsContainer.style.display === "none"
+                  ? "flex"
+                  : "none";
             });
+
 
 
 
