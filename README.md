@@ -8,8 +8,7 @@ Frightful Frenzy is a 2d game where your main goal is to stay alive! With each s
 Here's my [Live Site](https://dennislee1499.github.io/Frightful-Frenzy/)
 
 
-
-<img width="1440" alt="Screenshot 2023-08-30 at 9 12 48 AM" src="https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/0507e727-ee50-4ca0-930e-5fde90ec441f">
+<img width="1432" alt="Gameplay" src="https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/f98e10d8-d0f3-4363-9146-971b403bd53b">
 
 
 ## Functionality & MVPs 
