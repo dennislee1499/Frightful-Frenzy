@@ -20,9 +20,10 @@ In Frightful Frenzy, users will be able to:
 
 
   
-![gameover](https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/d5868250-6128-47be-9aba-2bb854586819)
 
 
+
+![gameover](https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/04773f00-bdf7-496f-bd9a-7edf5c51fdb7)
 
 
 
@@ -45,7 +46,12 @@ The overall design of the game relies heavily on collision detection. The logic 
 
 - Use the arrow keys to control the movement of their character
 
-![frightdemo](https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/71665bbd-51ae-440e-9aec-92bcc95fd5d2)
+
+
+![frightdemo](https://github.com/dennislee1499/Frightful-Frenzy/assets/136773894/bfbbc9ce-8df6-46e0-be05-fdc6b80dc23b)
+
+
+
 
 The arrow keys on the keyboard allow players to move the character left, right, up and down. Based on the movement of the character, the correct animation will be displayed.
 
